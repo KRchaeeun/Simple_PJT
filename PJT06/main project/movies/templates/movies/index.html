@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div style="text-align:center">
+  <img src="{% static 'index_메인이미지.jpg' %}" alt="메인이미지">
+</div>
+<br><br>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for movie in movies %}
+  <div class="col">
+    <div class="card border-dark mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <a href="{% url "movies:detail" movie.pk %}">
+            <h5 class="card-title">{{ movie.title }}</h5>
+          </a>
+          
+          <p class="card-text">{{ movie.content }}</p>
+          <p></p>
+          <form action="{% url "movies:likes" movie.pk %}" method="POST">
+            {% csrf_token %}
+            {% if request.user in movie.like_users.all %}
+              <input type="submit" value="좋아요 취소">
+            {% else %}
+              <input type="submit" value="좋아요">
+            {% endif %}
+          </form>
+          {{ movie.like_users.all|length }}명이 좋아합니다.
+        </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

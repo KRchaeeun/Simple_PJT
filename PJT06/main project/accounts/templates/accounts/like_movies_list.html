@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1>{{ person.username }}가 좋아하는 영화 목록</h1>
+  <a href="{% url "accounts:profile" person.username %}">뒤로 가기</a>
+  <hr>
+  {% if like_movies %}
+    <ul>
+      {% for like_movie in like_movies %}
+        <li>{{ like_movie.title }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>아직 좋아하는 영화가 없습니다.</p>
+  {% endif %}
+{% endblock %}

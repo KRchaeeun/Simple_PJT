@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie</title>
+  <!-- Google Font 적용 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+  <!-- BOOTSTRAP 적용 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- nav -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark nav-fix" data-bs-theme="dark">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        <img src="./images/logo.png" alt="logo" width="130px">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end text-end" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="02_home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="03_community.html">Community</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login-section">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Login Section -->
+  <div class="modal fade" id="login-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="basic-url" class="form-label">ID</label>
+          <input type="text" class="form-control">
+          <div class="form-text" id="basic-addon4">We'll never share your email with anyone else.</div>
+          <label for="basic-url" class="form-label mt-2">Password</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main page -->
+  <main>
+    <!-- Header -->
+    <header>
+      <!-- Bootstrap Carousel Component -->
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="4000">
+            <img src="images/header1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="4000">
+            <img src="images/header2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="4000">
+            <img src="images/header3.jpg"  class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </header>
+  <!-- Section -->
+  <div class="box-office">
+    BOX OFFICE
+  </div>
+  <section class="container">
+    <div class="row gy-5">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie1.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">The Shawshank Redemption</h5>
+            <p class="card-text">Wrongfully imprisoned Andy Dufresne forms a deep friendship with Red in Shawshank Prison. 
+              Facing harsh realities, Andy uses wit to bring hope to inmates. 
+              Their bond and Andy's cunning result in a remarkable escape.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie2.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">Schindler's List</h5>
+            <p class="card-text">During the Holocaust, businessman Oskar Schindler endeavors to save Jews by employing them. 
+              Witnessing Nazi cruelties, he compiles a list to safeguard workers. 
+              Schindler's actions showcase profound humanity amidst atrocities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie3.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">The Dark Knight</h5>
+            <p class="card-text">The Joker brings chaos to Gotham, challenging Batman's principles. 
+              Their intense battle blurs lines between heroism and madness. 
+              Gotham's fate hinges on their deadly confrontation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie4.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">Fight Club</h5>
+            <p class="card-text">An unnamed protagonist, feeling alienated, forms Fight Club with the enigmatic Tyler Durden. 
+              Their movement against societal norms evolves into chaotic Project Mayhem. 
+              A shocking revelation about Durden's true nature unfolds.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie5.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">The Godfather</h5>
+            <p class="card-text">The Corleone Mafia family, under patriarch Vito, navigates power struggles in crime's underworld. 
+              Loyalties are tested, resulting in betrayals and violent resolutions. 
+              Family dynamics and crime intertwine in this saga.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-img-top" style="background-image: url('images/movie6.jpg');"></div>
+          <div class="card-body">
+            <h5 class="card-title movie-title">The Lord of the Rings: The Return of the King</h5>
+            <p class="card-text">Frodo and Sam edge closer to Mount Doom to destroy the One Ring. 
+              Middle-earth's kingdoms unite against Sauron's overwhelming forces. 
+              An epic battle decides the fate of all.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer style="padding-top: 50px;">
+    <div class="fixed-bottom bg-secondary-subtle">
+      <p class="text-center my-2">
+        Web-bootstrap PJT, by Chaeeun LEE and Jihyun LIM and Suhyung Park, feat.Eunkyu Lee and Jieun Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+</html>

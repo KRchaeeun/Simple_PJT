@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1>회원 정보 수정</h1>
+  <hr>
+  <form action="{% url 'accounts:update' %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="수정" class="btn btn-dark d-flex justify-content-end">
+  </form>
+  <hr>
+  <div class="container ps-0">
+    <div class="d-flex">
+      <form action="accounts/change_password.html" method="POST" class="me-2">
+        <input type="submit" value="비밀번호 변경" class="btn btn-dark">
+      </form>
+      <form action="{% url 'accounts:delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴" class="btn btn-danger">
+      </form>
+    </div>
+    <br>
+    <a href="{% url "movies:index" %}" class="text-decoration-none text-dark me-3">[ 메인페이지로 이동하기 ]</a>
+  </div>
+{% endblock content %}

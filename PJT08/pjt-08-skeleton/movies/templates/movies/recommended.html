@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Recommended Movies</h1>
+
+<h2>Genres:</h2>
+<ul>
+    {% for genre in genres %}
+        <li><a href="#" class="genre-link" data-genre-id="{{ genre.id }}">{{ genre.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2>Recommended Movies:</h2>
+<ul id="recommended-movies">
+    <!-- Recommended movies will be displayed here -->
+</ul>
+
+<p id="no-recommended-movies">No recommended movies found.</p>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const genreLinks = document.querySelectorAll(".genre-link")
+    const recommendedMoviesList = document.getElementById("recommended-movies")
+    const noRecommendedMoviesMessage = document.getElementById("no-recommended-movies")
+
+    genreLinks.forEach(function (genreLink) {
+        genreLink.addEventListener("click", function (event) {
+            event.preventDefault()
+            const genreId = genreLink.getAttribute("data-genre-id")
+
+            axios.get(`{% url 'movies:recommended_gen' 0 %}`.replace('0', genreId))
+                .then(function (response) {
+                    const data = response.data
+                    displayRecommendedMovies(data)
+                })
+                .catch(function (error) {
+                    console.error("AJAX request failed:", error)
+                })
+        })
+    })
+
+    function displayRecommendedMovies(data) {
+        recommendedMoviesList.innerHTML = ""
+
+        if (data.length > 0) {
+            noRecommendedMoviesMessage.style.display = "none"
+            data.forEach(function (movie) {
+                const genres = movie.genres.join(", ")
+                const listItem = `
+                    <li>
+                        <h3><a href="${movie.detail_url}">${movie.title}</a></h3>
+                        <p><strong>Release Date:</strong> ${movie.release_date}</p>
+                        <p><strong>Vote Average:</strong> ${movie.vote_average}</p>
+                        <p><strong>Overview:</strong> ${movie.overview}</p>
+                        <p><strong>Genres:</strong> ${genres}</p>
+                        <img src="${movie.poster_path}" alt="${movie.title} Poster">
+                    </li>
+                `
+                recommendedMoviesList.insertAdjacentHTML("beforeend", listItem)
+            })
+        } else {
+            noRecommendedMoviesMessage.style.display = "block"
+        }
+    }
+})
+</script>
+{% endblock script %}

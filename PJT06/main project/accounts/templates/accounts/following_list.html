@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <hr>
+  <h1>{{ user.username }}이 팔로우하는 사용자</h1>
+  <a href="{% url "accounts:profile" person.username %}">뒤로 가기</a>
+  <hr>
+  {% if followers %}
+    <ul>
+      {% for following in followings %}
+        <li>{{ following.username }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+   <p>인원이 없습니다.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h2>영화 상세 리뷰</h2>
+<h3>{{ movie.title }}</h3>
+<hr>
+<p><b>작성자</b> : 
+    <a href="{% url "accounts:profile" movie.user.username %}">{{ movie.user }}</a>
+</p>
+<p><b>제목</b>: {{ movie.title }}</p>
+<p><b>내용</b>: {{ movie.content }}</p>
+<p><b>작성 시각</b>: {{ movie.created_at }}</p>
+<p><b>수정 시각</b>: {{ movie.updated_at }}</p>
+<hr>
+{% if request.user == movie.user %}
+  <div class="container">
+    <div class="d-flex">
+      <a href="{% url "movies:update" movie.pk %}" class="btn btn-dark">게시물 수정하기</a>
+      <form action="{% url "movies:delete" movie.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="삭제" class="btn btn-danger ms-3">
+    </form>
+    </div>
+  </div>
+{% endif %}
+<hr>
+<h3>댓글 목록</h3>
+<br>
+{% for comment in movie.comment_set.all %}
+  {% if not comment.parent_comment_id  %}
+    <div>
+      <strong>{{ comment.user.username }}</strong>
+      <p>{{ comment.content }}</p>
+      <div class="border border-dark-gray pb-3">
+        {% for reply in comment.comment_set.all %}
+            <div class="ms-3 my-2">
+                <li style="list-style-type: circle;">{{ reply.content }}</li>
+            </div>
+        {% endfor %}
+        <form action="{% url 'movies:comments_create_with_parent' movie.pk comment.pk %}" method="POST" class="mt-5">
+          {% csrf_token %}
+          <label for="reply-content">Content:</label>
+          <input type="text" id="reply-content" name="content">
+          <input type="submit" value="댓글 달기" class="btn btn-secondary">
+        </form>
+      </div>
+    </div>
+  {% endif %}
+
+{% endfor %}
+<br>
+<form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" value="댓글 달기" class="btn btn-dark">
+</form>
+<hr>
+<a href="{% url "movies:index" %}" class="text-decoration-none text-dark me-3">[ 메인페이지로 이동하기 ]</a>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock content %}

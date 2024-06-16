@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1>CREATE</h1>
+<form action="{% url "movies:create" %}" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit" value="리뷰 생성" class="btn btn-dark">
+</form>
+<hr>
+<a href="{% url 'movies:index' %}">[back]</a>
+
+{% endblock content %}
+
+
+
+
+

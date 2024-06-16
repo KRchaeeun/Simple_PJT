@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1>{{ person.username }}님의 프로필</h1>
+  <div class="container">
+    {% if request.user != person %}
+      <div class="d-flex justify-content-between align-items-center">
+        <p><a href="{% url 'accounts:following_list' person.username %}">팔로잉</a> : {{ person.followings.all|length }}</p>
+        <div>
+          <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+            {% csrf_token %}
+            {% if user in person.followers.all %}
+              <button class="btn btn-dark">팔로우 취소</button>
+            {% else %}
+              <button class="btn btn-dark">팔로우</button>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+      <div>
+        <p><a href="{% url 'accounts:follower_list' person.username %}">팔로워</a> : {{ person.followers.all|length }}</p>
+      </div>
+    {% else %}
+      <div>
+        <p><a href="{% url 'accounts:following_list' person.username %}">팔로잉</a> : {{ person.followings.all|length }}</p>
+        <p><a href="{% url 'accounts:follower_list' person.username %}">팔로워</a> : {{ person.followers.all|length }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <hr>
+  <h3>영화 목록</h3>
+  <ul style="list-style-type: none; padding: 0; margin: 0;">
+    {% for movie in movies %}
+      <li style="padding: 0; margin: 0;">
+        <a href="{% url "movies:detail" movie.pk %}" class="p-2 mb-3">{{ movie.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>  
+  <hr>
+  <h3>좋아요 누른 개수 : {{ person.like_movies.all|length }}</h3>
+  <a href="{% url "accounts:like_movies_list" person.username %}">좋아요 영화 확인</a>
+  <hr>
+  <a href="{% url "movies:index" %}" class="text-decoration-none text-dark me-3">[ 메인페이지로 이동하기 ]</a>
+{% endblock content %}

@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>DETAIL PAGE</h2>
+  <h3>{{ movie.title }}</h3>
+  <p>{{ movie.description }}</p>
+  
+  <hr>
+  <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'movies:update' movie.pk %}'">UPDATE</button>
+    <button type="submit" class="btn btn-danger">DELETE</button>
+  </form>
+  <hr>
+  <h4>댓글 목록</h4>
+  <ul class="list-group">
+    {% for comment in comments %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+        {{ comment.user }} - {{ comment.content }}
+        </div>
+        {% if comment.user == request.user %}
+        <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-danger btn-sm">DELETE</button>
+        </form>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  
+  {% if comment.user == request.user %}
+    <form action="{% url "movies:comments_create" movie.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% endif %}
+
+  <button type="submit" class="btn btn-primary">BACK</button>
+{% endblock  %}
+

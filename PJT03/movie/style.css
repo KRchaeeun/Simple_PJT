@@ -1,0 +1,93 @@
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Ubuntu', sans-serif;  
+}
+
+/* 01_nav.html */
+.nav-fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+/* 02_home.html */
+body > main {
+    padding-top: 70px;
+}
+header {
+    width: 100%;
+}
+@media (min-width: 1400px) {
+    header .carousel{
+        width: 1320px;
+        margin: 0 auto;
+    }
+}
+.box-office {
+    font-size: 75px;
+    text-align: center;
+    width: 100%;
+    font-size: 5vw;
+    margin: 20px;
+}
+.card-img-top {
+    width: 100%;
+    padding-top: 177.78%; /* 16:9 비율 */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}
+.movie-title {
+    font-weight: bold;
+    margin: 10px 0px;
+    font-size: 22px;
+}
+.card-text {
+    line-height: 1.7;
+}
+
+/* 03_community.html */
+/* 4 & 5. 레이아웃 조정 */
+.community-text {
+    font-size: 90px;
+    text-align: center;
+    width: 100%;
+    font-size: 5vw;
+    margin-bottom: 20px;
+}
+
+.top-padding {
+    padding-top: 80px;
+}
+
+@media (min-width: 0px) {
+    .boot-list {
+        display: block;
+    }
+    .boot-table {
+        display: none;
+    }
+
+}
+@media (min-width: 992px) {
+    .boot-list {
+        display: none;
+    }
+    .boot-table {
+        display: block;
+    }
+}
+
+  
+.article-content .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 04 */
+.footer {
+    margin-top: 50px;
+}
